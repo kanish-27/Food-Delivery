@@ -1,0 +1,127 @@
+.dashboard {
+    width: 100%;
+    margin-top: 20px;
+    color: #e0e0e0;
+}
+
+.dashboard h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.card {
+    background-color: #2a2a2a;
+    padding: 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.card-info h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    color: white;
+}
+
+.card-info p {
+    margin: 5px 0 0 0;
+    color: #b0b0b0;
+    font-size: 14px;
+}
+
+/* Recent Orders Table */
+.recent-orders h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.recent-orders-table {
+    background-color: #2a2a2a;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #444;
+    font-weight: 600;
+    color: #b0b0b0;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr 1fr;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+    font-size: 14px;
+    align-items: center;
+    color: #e0e0e0;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.order-id {
+    color: tomato;
+    font-weight: 500;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.status.food-processing {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status.out-for-delivery {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.status.delivered {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}

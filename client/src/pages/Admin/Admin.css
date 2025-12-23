@@ -1,0 +1,28 @@
+.admin {
+    display: flex;
+    min-height: 100vh;
+    background-color: #121212;
+    /* Darker background for the whole admin area */
+    color: #e0e0e0;
+}
+
+.admin-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #1a1a1a;
+    width: auto;
+    /* Let flex handle width */
+    margin: 0;
+    /* Removing fixed margins */
+    overflow-y: auto;
+}
+
+/* Scrollbar for admin content */
+.admin-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.admin-content::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 4px;
+}

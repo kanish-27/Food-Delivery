@@ -1,0 +1,85 @@
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background-color: #121212;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-options {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-right: 20px;
+    /* Space for the active indicator */
+}
+
+.sidebar-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 0 25px 25px 0;
+    margin-right: -20px;
+    /* Pull into the padding */
+    transition: all 0.3s ease;
+    color: #b0b0b0;
+    border: none;
+}
+
+.sidebar-option:hover {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.sidebar-option.active {
+    background-color: #ff634720;
+    /* Transparent tomato */
+    color: tomato;
+    border-left: 4px solid tomato;
+    border-radius: 0 25px 25px 0;
+}
+
+.sidebar-option img {
+    filter: brightness(0.7) invert(1);
+    width: 20px;
+}
+
+.sidebar-option.active img {
+    filter: unset;
+    /* Often images are black, if we need them tomato colored ideally we use SVG or mask,
+       but usually keeping them original color or white is fine.
+       Adjust filter based on your actual icons. */
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        width: 80px;
+        align-items: center;
+    }
+
+    .sidebar-options {
+        padding-right: 0;
+        align-items: center;
+    }
+
+    .sidebar-option {
+        padding: 15px;
+        border-radius: 50%;
+        margin-right: 0;
+        justify-content: center;
+    }
+
+    .sidebar-option p {
+        display: none;
+    }
+
+    .sidebar-option.active {
+        border-left: none;
+        border: 2px solid tomato;
+    }
+}

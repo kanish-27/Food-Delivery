@@ -1,0 +1,97 @@
+.list-add {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.list-table {
+    display: flex;
+    /* Changed from grid to flex column for rows */
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-table-format {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+    /* Adjusted for better spacing */
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    border: 1px solid #333;
+    font-size: 14px;
+    background-color: #2a2a2a;
+    /* Card background */
+    color: #e0e0e0;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list-table-format.title {
+    background-color: #121212;
+    /* Darker header */
+    color: #b0b0b0;
+    font-weight: 600;
+    border: none;
+    border-bottom: 2px solid #333;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Row Hover Effect for non-titles */
+.list-table-format:not(.title):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: #444;
+}
+
+.list-table-format img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.list-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.edit-icon {
+    color: #007bff;
+    transition: color 0.2s;
+}
+
+.edit-icon:hover {
+    color: #0056b3;
+}
+
+.delete-icon {
+    color: #ff6b6b;
+    transition: color 0.2s;
+}
+
+.delete-icon:hover {
+    color: #ff3333;
+}
+
+.cursor {
+    cursor: pointer;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .list-table-format {
+        grid-template-columns: 1fr 3fr 1fr;
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    .list-table-format.title {
+        display: none;
+    }
+}
