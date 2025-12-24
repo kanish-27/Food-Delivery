@@ -16,16 +16,28 @@
 .food-item-image {
     width: 100%;
     border-radius: 15px 15px 0px 0px;
-    object-fit: cover;
 }
 
 .food-item-add {
-    width: 35px;
+    width: 40px;
+    height: 40px;
     position: absolute;
     bottom: 15px;
     right: 15px;
     cursor: pointer;
     border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    color: black;
+    transition: transform 0.2s;
+    user-select: none;
+}
+
+.food-item-add:hover {
+    transform: scale(1.1);
 }
 
 .food-item-counter {
@@ -38,11 +50,10 @@
     padding: 6px;
     border-radius: 50px;
     background-color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    user-select: none;
 }
 
-.food-item-counter img {
-    width: 30px;
-}
 
 .food-item-info {
     padding: 20px;
@@ -72,8 +83,8 @@
     margin: 10px 0px;
 }
 
-.add-btn,
-.remove-btn {
+.food-item-counter-add,
+.food-item-counter-remove {
     width: 30px;
     height: 30px;
     display: flex;
@@ -81,24 +92,17 @@
     justify-content: center;
     border-radius: 50%;
     cursor: pointer;
+    flex-shrink: 0;
+    user-select: none;
+    /* Prevent text selection */
 }
 
-.add-btn {
-    background: #0f0;
-    color: black;
+.food-item-counter-add {
+    background-color: #e6fced;
+    color: #00c853;
 }
 
-.remove-btn {
-    background: #f00;
-    color: white;
-}
-
-.add-green {
-    background: #fff;
-    color: #1fb355;
-}
-
-.remove-red {
-    background: #fff3f3;
+.food-item-counter-remove {
+    background-color: #ffe6e6;
     color: #ff4c4c;
 }
