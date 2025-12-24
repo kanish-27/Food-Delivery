@@ -39,15 +39,19 @@ const PlaceOrder = () => {
             }
         })
 
+        // Add COD fee if applicable (e.g. $5)
+        const deliveryFee = getTotalCartAmount() === 0 ? 0 : 2;
+        const codFee = paymentMethod === "cod" ? 5 : 0;
+        const totalAmount = getTotalCartAmount() + deliveryFee + codFee;
+
         let orderData = {
             address: data,
             items: orderItems,
-            amount: getTotalCartAmount() + 2,
+            amount: totalAmount,
             paymentMethod: paymentMethod
         }
 
         if (paymentMethod === "stripe") {
-            // Existing stripe flow (detects bypass in backend or needs valid key)
             let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
             if (response.data.success) {
                 const { session_url } = response.data;
@@ -57,30 +61,9 @@ const PlaceOrder = () => {
                 alert("Error or Payment Gateway not valid")
             }
         } else {
-            // COD Flow: Mock order placement directly since backend placeOrder currently does stripe
-            // Ideally we should have a 'placeCODOrder' endpoint.
-            // For now we can use the same endpoint but rely on the backend "dummy key" hack which effectively acts as COD success.
-            // The backend hack I added: if (key === "sk_test_12345") success = true;
-            // This applies to both. The difference is redirect.
-            // Wait, the hack requires STRIPE_SECRET_KEY to be set in backend env. It is.
-            // So both flows will succeed immediately.
-
-            // BUT: the user wants to see options.
-            // If I select "Stripe", I want to simulate payment page -> verification.
-            // If I select "COD", I want to just go to order success.
-
-            // My backend hack returns a 'session_url' which is actually the verify URL.
-            // `session_url: ${frontend_url}/verify?success=true&orderId=${newOrder._id}`
-
-            // So both buttons will do the same thing: simulate a successful "verification" which completes the order.
-            // This is acceptable behavior for "dummy" flow.
-
+            // COD Flow
             let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
             if (response.data.success) {
-                // For COD we might want to navigate directly to 'myorders' instead of 'verify'.
-                // But verify handles creating the order payment status.
-                // Actually verify sets payment: true. For COD payment is false initially usually.
-                // But let's assume successful delivery for simplicity or navigate to verify with success=true.
                 const { session_url } = response.data;
                 window.location.replace(session_url);
             }
@@ -100,6 +83,10 @@ const PlaceOrder = () => {
             navigate('/cart')
         }
     }, [token])
+
+    const deliveryFee = getTotalCartAmount() === 0 ? 0 : 2;
+    const codFee = paymentMethod === "cod" ? 5 : 0;
+    const totalAmount = getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + deliveryFee + codFee;
 
     return (
         <form onSubmit={placeOrder} className='place-order'>
@@ -132,12 +119,21 @@ const PlaceOrder = () => {
                         <hr />
                         <div className="cart-total-details">
                             <p>Delivery Fee</p>
-                            <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
+                            <p>${deliveryFee}</p>
                         </div>
+                        {paymentMethod === "cod" && (
+                            <>
+                                <hr />
+                                <div className="cart-total-details">
+                                    <p>COD Charges</p>
+                                    <p>${codFee}</p>
+                                </div>
+                            </>
+                        )}
                         <hr />
                         <div className="cart-total-details">
                             <b>Total</b>
-                            <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
+                            <b>${totalAmount}</b>
                         </div>
                     </div>
                     <div className="payment-options">
