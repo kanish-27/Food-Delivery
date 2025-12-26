@@ -3,7 +3,7 @@ import './PlaceOrder.css'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { FaCcVisa, FaCcMastercard, FaCcAmex, FaMoneyBillWave, FaPaypal, FaApple } from 'react-icons/fa'
+import { FaCcVisa, FaCcMastercard, FaCcAmex, FaMoneyBillWave, FaPaypal, FaApple, FaLock } from 'react-icons/fa'
 
 const PlaceOrder = () => {
     const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext)
@@ -43,24 +43,17 @@ const PlaceOrder = () => {
             amount: totalAmount,
             paymentMethod: paymentMethod
         }
-        if (paymentMethod === "stripe") {
-            let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
-            if (response.data.success) {
-                const { session_url } = response.data;
+        let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
+        if (response.data.success) {
+            const { session_url } = response.data;
+            if (session_url) {
                 window.location.replace(session_url);
+            } else {
+                navigate("/myorders");
             }
-            else {
-                alert("Error or Payment Gateway not valid")
-            }
-        } else {
-            let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
-            if (response.data.success) {
-                const { session_url } = response.data;
-                window.location.replace(session_url);
-            }
-            else {
-                alert("Error")
-            }
+        }
+        else {
+            alert(response.data.message || "Error");
         }
     }
     const navigate = useNavigate();
@@ -141,13 +134,9 @@ const PlaceOrder = () => {
                             </div>
                             {paymentMethod === "stripe" && (
                                 <div className="payment-details-form">
-                                    <div className="card-row">
-                                        <input required type="text" placeholder="Card Number" className="card-input" />
-                                        <input required type="text" placeholder="Name on Card" className="card-input" />
-                                    </div>
-                                    <div className="card-row">
-                                        <input required type="text" placeholder="Expiry (MM/YY)" className="card-input" />
-                                        <input required type="text" placeholder="CVV" className="card-input" />
+                                    <p className="payment-redirect-msg">You will be redirected to our secure payment gateway.</p>
+                                    <div className="secure-badge">
+                                        <FaLock size={12} /> Encrypted & Secure
                                     </div>
                                 </div>
                             )}

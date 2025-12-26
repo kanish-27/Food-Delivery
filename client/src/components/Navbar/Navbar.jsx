@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import './Navbar.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { StoreContext } from '../../context/StoreContext'
 import { FaSearch, FaShoppingBasket, FaUserCircle, FaSignOutAlt, FaBox } from 'react-icons/fa'
 
@@ -9,6 +9,7 @@ const Navbar = ({ setShowLogin }) => {
     const [menu, setMenu] = useState("home");
     const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -21,9 +22,9 @@ const Navbar = ({ setShowLogin }) => {
             <Link to='/'><div className="logo">FastFood.</div></Link>
             <ul className="navbar-menu">
                 <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
-                <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
-                <a href='#app-download' onClick={() => setMenu("mobile-app")} className={menu === "mobile-app" ? "active" : ""}>Mobile App</a>
-                <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
+                <a href='#explore-menu' onClick={() => { setMenu("menu"); if (location.pathname !== '/') navigate('/'); }} className={menu === "menu" ? "active" : ""}>Menu</a>
+                <a href='#app-download' onClick={() => { setMenu("mobile-app"); if (location.pathname !== '/') navigate('/'); }} className={menu === "mobile-app" ? "active" : ""}>Mobile App</a>
+                <a href='#footer' onClick={() => { setMenu("contact-us"); if (location.pathname !== '/') navigate('/'); }} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
             </ul>
             <div className="navbar-right">
                 <FaSearch size={20} />

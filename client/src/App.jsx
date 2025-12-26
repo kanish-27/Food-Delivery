@@ -9,6 +9,7 @@ import LoginPopup from './components/LoginPopup/LoginPopup'
 import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
 import Admin from './pages/Admin/Admin'
+import MockPayment from './pages/MockPayment/MockPayment'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,6 +26,10 @@ const App = () => {
         <Routes>
           <Route path='/admin/*' element={<Admin />} />
         </Routes>
+      ) : location.pathname === '/mock-payment' ? (
+        <Routes>
+          <Route path='/mock-payment' element={<MockPayment />} />
+        </Routes>
       ) : (
         <>
           <div className='app'>
@@ -35,6 +40,7 @@ const App = () => {
               <Route path='/order' element={<PlaceOrder />} />
               <Route path='/verify' element={<Verify />} />
               <Route path='/myorders' element={<MyOrders />} />
+              <Route path='/mock-payment' element={<MockPayment />} />
             </Routes>
           </div>
           <Footer />
