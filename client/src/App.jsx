@@ -10,6 +10,7 @@ import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
 import Admin from './pages/Admin/Admin'
 import MockPayment from './pages/MockPayment/MockPayment'
+import MockPlayStore from './pages/MockPlayStore/MockPlayStore'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,9 +27,10 @@ const App = () => {
         <Routes>
           <Route path='/admin/*' element={<Admin />} />
         </Routes>
-      ) : location.pathname === '/mock-payment' ? (
+      ) : (location.pathname === '/mock-payment' || location.pathname === '/mock-app-store') ? (
         <Routes>
           <Route path='/mock-payment' element={<MockPayment />} />
+          <Route path='/mock-app-store' element={<MockPlayStore />} />
         </Routes>
       ) : (
         <>
@@ -40,7 +42,7 @@ const App = () => {
               <Route path='/order' element={<PlaceOrder />} />
               <Route path='/verify' element={<Verify />} />
               <Route path='/myorders' element={<MyOrders />} />
-              <Route path='/mock-payment' element={<MockPayment />} />
+              <Route path='/myorders' element={<MyOrders />} />
             </Routes>
           </div>
           <Footer />
