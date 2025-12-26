@@ -56,38 +56,176 @@
     }
 }
 
+/* Payment Layout & Design */
 .payment-options {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin: 20px 0;
+    gap: 12px;
 }
 
-.payment-option {
+.payment-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #eee;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+}
+
+.payment-methods-list {
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #444;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.payment-option-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px;
-    border: 1px solid #333;
-    border-radius: 4px;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid #333;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.2s ease;
+    background-color: #1a1a1a;
 }
 
-.payment-option:hover {
+.payment-option-row:last-child {
+    border-bottom: none;
+}
+
+.payment-option-row:hover {
+    background-color: #252525;
+}
+
+.payment-option-row.selected {
+    background-color: #252525;
+}
+
+.payment-option-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.payment-option-left span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f0f0f0;
+}
+
+/* Custom Radio Button */
+.radio-circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    position: relative;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.radio-circle.active {
     border-color: tomato;
 }
 
-.payment-option input {
-    accent-color: tomato;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+.radio-circle.active::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: tomato;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.payment-option label {
-    cursor: pointer;
+.payment-option-right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.pay-icon {
+    font-size: 26px;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.payment-option-row:hover .pay-icon,
+.payment-option-row.selected .pay-icon {
+    color: #fff;
+}
+
+/* Payment Details Form (Expands below option) */
+.payment-details-form {
+    padding: 20px 24px;
+    background-color: #222;
+    border-bottom: 1px solid #333;
+    border-top: 1px solid #333;
+    /* subtle separator */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+        padding: 0 24px;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 300px;
+        padding: 20px 24px;
+    }
+}
+
+.payment-details-form input.card-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: #111;
+    /* Darker input bg */
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+.payment-details-form input.card-input::placeholder {
+    color: #777;
+}
+
+.payment-details-form input.card-input:focus {
+    border-color: tomato;
+}
+
+.card-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.card-row input {
     flex: 1;
-    font-size: 16px;
-    font-weight: 500;
+    /* Equal width */
+}
+
+.payment-redirect-msg {
+    color: #aaa;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.4;
 }
