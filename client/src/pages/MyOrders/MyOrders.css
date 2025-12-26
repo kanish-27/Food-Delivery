@@ -15,7 +15,7 @@
 
 .my-orders-order {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr 0.5fr;
     align-items: center;
     gap: 30px;
     font-size: 14px;
@@ -67,5 +67,380 @@
 
     .my-orders-order button {
         font-size: 10px;
+    }
+}
+
+/* Tracking Modal Styles - Professional Look */
+.tracking-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    /* Darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+    /* stronger blur */
+}
+
+.tracking-modal {
+    background: linear-gradient(145deg, #1e1e1e, #292929);
+    color: #fff;
+    width: 95%;
+    max-width: 600px;
+    max-height: 90vh;
+    /* Limit height */
+    overflow-y: auto;
+    /* Enable scrolling */
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    border: 1px solid #444;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    /* Custom Scrollbar for Modal */
+    scrollbar-width: thin;
+    scrollbar-color: tomato #333;
+}
+
+.tracking-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tracking-modal::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 4px;
+}
+
+.tracking-modal::-webkit-scrollbar-thumb {
+    background-color: tomato;
+    border-radius: 4px;
+}
+
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header */
+.tracking-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
+    position: sticky;
+    top: -30px;
+    /* Stick to top including padding offset */
+    background: inherit;
+    /* Maintain background */
+    z-index: 10;
+    margin-top: -10px;
+    /* Adjust for padding */
+    padding-top: 10px;
+}
+
+.tracking-modal-header h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #ccc;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background-color: tomato;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.tracking-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Order Summary */
+.order-summary {
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #ddd;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #333;
+}
+
+.order-summary p strong {
+    color: #888;
+    margin-right: 8px;
+}
+
+/* Stepper */
+.tracking-stepper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 20px 0;
+    position: relative;
+    padding: 0 10px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 2;
+    flex: 1;
+    position: relative;
+}
+
+.step-icon {
+    width: 45px;
+    height: 45px;
+    background-color: #222;
+    border: 3px solid #555;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #777;
+    transition: all 0.4s ease;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.step.active .step-icon {
+    background-color: tomato;
+    border-color: tomato;
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 99, 71, 0.6);
+    transform: scale(1.1);
+}
+
+.step p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+    transition: color 0.3s;
+}
+
+.step.active p {
+    color: #fff;
+}
+
+/* Connecting Lines */
+.tracking-stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.step-line {
+    display: block;
+    position: relative;
+    top: 22px;
+    height: 4px;
+    background: #333;
+    flex-grow: 1;
+    margin: 0 -2px;
+    z-index: 1;
+    transition: background 0.4s;
+    border-radius: 2px;
+}
+
+.step-line.active {
+    background: tomato;
+    box-shadow: 0 0 10px rgba(255, 99, 71, 0.5);
+}
+
+
+/* Status Message */
+.tracking-status-msg {
+    text-align: center;
+    font-size: 16px;
+    color: #ddd;
+    background: rgba(255, 99, 71, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 99, 71, 0.3);
+    margin-top: 10px;
+}
+
+.tracking-status-msg span {
+    font-weight: bold;
+    color: tomato;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 8px;
+}
+
+/* Modal Sections (Items & Address) */
+.modal-section h4 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: tomato;
+    border-bottom: 2px solid #333;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+/* Items List */
+.items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 5px;
+    /* Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: #555 #222;
+}
+
+.items-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.items-list::-webkit-scrollbar-track {
+    background: #222;
+}
+
+.items-list::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 3px;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    background-color: #252525;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.2s;
+}
+
+.item-row:hover {
+    transform: translateX(5px);
+    background-color: #2a2a2a;
+    border-color: #555;
+}
+
+.item-row img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 15px;
+    border: 1px solid #444;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-name {
+    margin: 0;
+    color: #eee;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.item-quantity {
+    margin: 4px 0 0 0;
+    color: #888;
+    font-size: 12px;
+}
+
+.item-price {
+    color: tomato;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+/* Address Section */
+.address-details {
+    background-color: #252525;
+    padding: 15px;
+    border-radius: 8px;
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.6;
+    border: 1px solid #333;
+}
+
+.address-details p {
+    margin: 2px 0;
+}
+
+.address-details p:first-child {
+    font-weight: bold;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+/* Delete Button Styles */
+.delete-btn {
+    background-color: transparent !important;
+    /* Override default button bg */
+    color: tomato !important;
+    border: 1px solid tomato !important;
+    width: 40px;
+    height: 40px;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    margin-left: 10px;
+}
+
+.delete-btn:hover {
+    background-color: tomato !important;
+    color: white !important;
+    transform: scale(1.1);
+}
+
+@media (max-width: 900px) {
+    .delete-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
     }
 }

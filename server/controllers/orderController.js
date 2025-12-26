@@ -81,7 +81,7 @@ const verifyOrder = async (req, res) => {
 // user orders for frontend
 const userOrders = async (req, res) => {
     try {
-        const orders = await orderModel.find({ userId: req.body.userId });
+        const orders = await orderModel.find({ userId: req.body.userId, userDeleted: { $ne: true } });
         res.json({ success: true, data: orders })
     } catch (error) {
         console.log(error);
@@ -111,4 +111,29 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus }
+// user delete order
+const deleteOrder = async (req, res) => {
+    try {
+        // We trust authMiddleware to provide the correct userId in req.body.userId
+        // However, we must ensure we are deleting ONLY the order belonging to this user
+        const order = await orderModel.findOne({ _id: req.body.orderId });
+
+        if (!order) {
+            return res.json({ success: false, message: "Order not found" });
+        }
+
+        // Strict check: Ensure the order's userId matches the token's userId
+        if (order.userId.toString() !== req.body.userId) {
+            return res.json({ success: false, message: "Unauthorized action" });
+        }
+
+        // Soft delete: Mark as deleted for user, but keep in DB for admin
+        await orderModel.findByIdAndUpdate(req.body.orderId, { userDeleted: true });
+        res.json({ success: true, message: "Order Removed from History" })
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" })
+    }
+}
+
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, deleteOrder }
