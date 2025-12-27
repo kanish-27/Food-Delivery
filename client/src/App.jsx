@@ -11,6 +11,7 @@ import MyOrders from './pages/MyOrders/MyOrders'
 import Admin from './pages/Admin/Admin'
 import MockPayment from './pages/MockPayment/MockPayment'
 import MockPlayStore from './pages/MockPlayStore/MockPlayStore'
+import Contact from './pages/Contact/Contact'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -43,6 +44,7 @@ const App = () => {
               <Route path='/verify' element={<Verify />} />
               <Route path='/myorders' element={<MyOrders />} />
               <Route path='/myorders' element={<MyOrders />} />
+              <Route path='/contact' element={<Contact />} />
             </Routes>
           </div>
           <Footer />

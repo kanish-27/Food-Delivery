@@ -24,7 +24,7 @@ const Navbar = ({ setShowLogin }) => {
                 <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
                 <a href='#explore-menu' onClick={() => { setMenu("menu"); if (location.pathname !== '/') navigate('/'); }} className={menu === "menu" ? "active" : ""}>Menu</a>
                 <a href='#app-download' onClick={() => { setMenu("mobile-app"); if (location.pathname !== '/') navigate('/'); }} className={menu === "mobile-app" ? "active" : ""}>Mobile App</a>
-                <a href='#footer' onClick={() => { setMenu("contact-us"); if (location.pathname !== '/') navigate('/'); }} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
+                <Link to='/contact' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</Link>
             </ul>
             <div className="navbar-right">
                 <FaSearch size={20} />
