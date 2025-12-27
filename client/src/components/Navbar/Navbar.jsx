@@ -13,6 +13,7 @@ const Navbar = ({ setShowLogin }) => {
 
     const logout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("adminToken");
         setToken("");
         navigate("/");
     }
@@ -32,6 +33,7 @@ const Navbar = ({ setShowLogin }) => {
                     <Link to='/cart'><FaShoppingBasket size={24} color='white' /></Link>
                     <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
                 </div>
+                <button onClick={() => navigate('/admin')}>Admin</button>
                 {!token ? <button onClick={() => setShowLogin(true)}>Sign In</button>
                     : <div className='navbar-profile'>
                         <FaUserCircle size={30} color='white' />

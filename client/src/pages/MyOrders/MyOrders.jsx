@@ -58,7 +58,7 @@ const MyOrders = () => {
                                     return item.name + " x " + item.quantity + ", "
                                 }
                             })}</p>
-                            <p>${order.amount}.00</p>
+                            <p>₹{order.amount}.00</p>
                             <p>Items: {order.items.length}</p>
                             <p><span>&#x25cf;</span> <b>{order.status}</b></p>
                             <button onClick={() => handleTrackOrder(order)}>Track Order</button>
@@ -82,7 +82,7 @@ const MyOrders = () => {
                             <div className="tracking-modal-content">
                                 <div className="order-summary">
                                     <p><strong>Order ID:</strong> #{trackingOrder._id.slice(-6)}</p>
-                                    <p><strong>Amount:</strong> ${trackingOrder.amount}.00</p>
+                                    <p><strong>Amount:</strong> ₹{trackingOrder.amount}.00</p>
                                 </div>
 
                                 <div className="tracking-stepper">
@@ -116,7 +116,7 @@ const MyOrders = () => {
                                                     <p className="item-name">{item.name}</p>
                                                     <p className="item-quantity">Qty: {item.quantity}</p>
                                                 </div>
-                                                <p className="item-price">${item.price * item.quantity}</p>
+                                                <p className="item-price">₹{item.price * item.quantity}</p>
                                             </div>
                                         ))}
                                     </div>

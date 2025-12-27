@@ -52,7 +52,7 @@ const List = ({ url }) => {
                             <img src={`${url}/images/` + item.image} alt="" />
                             <p>{item.name}</p>
                             <p>{item.category}</p>
-                            <p>${item.price}</p>
+                            <p>₹{item.price}</p>
                             <div className='list-actions'>
                                 <FaEdit onClick={() => navigate(`/admin/edit/${item._id}`)} className='cursor edit-icon' />
                                 <FaTrash onClick={() => removeFood(item._id)} className='cursor delete-icon' />

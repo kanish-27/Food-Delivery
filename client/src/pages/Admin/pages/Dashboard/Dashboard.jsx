@@ -46,7 +46,7 @@ const Dashboard = ({ url }) => {
                         <FaChartLine />
                     </div>
                     <div className="card-info">
-                        <h2>${stats.totalRevenue}</h2>
+                        <h2>₹{stats.totalRevenue}</h2>
                         <p>Total Revenue</p>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ const Dashboard = ({ url }) => {
                         <div key={index} className="table-row">
                             <p className='order-id'>#{order._id.slice(-6)}</p>
                             <p>{order.address.firstName} {order.address.lastName}</p>
-                            <p>${order.amount}</p>
+                            <p>₹{order.amount}</p>
                             <p className={`status ${order.status.toLowerCase().replace(' ', '-')}`}>{order.status}</p>
                         </div>
                     ))}

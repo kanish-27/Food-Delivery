@@ -1,9 +1,20 @@
 import React from 'react'
 import './Sidebar.css'
-import { NavLink } from 'react-router-dom'
-import { FaPlus, FaList, FaBox, FaHome } from 'react-icons/fa'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { FaPlus, FaList, FaBox, FaHome, FaSignOutAlt } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 
-const Sidebar = () => {
+const Sidebar = ({ setAdminToken }) => {
+
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("adminToken");
+        setAdminToken("");
+        toast.success("Logged out");
+        navigate('/admin');
+    }
+
     return (
         <div className='sidebar'>
             <div className="sidebar-options">
@@ -23,6 +34,10 @@ const Sidebar = () => {
                     <FaBox size={20} />
                     <p>Orders</p>
                 </NavLink>
+                <div onClick={logout} className="sidebar-option">
+                    <FaSignOutAlt size={20} />
+                    <p>Logout</p>
+                </div>
             </div>
         </div>
     )

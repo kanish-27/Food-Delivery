@@ -1,94 +1,188 @@
+.order-add {
+    width: 70%;
+    margin-left: max(5vw, 25px);
+    margin-top: 50px;
+}
+
+.order-add h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
 .order-item {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
-    align-items: start;
-    gap: 20px;
+    grid-template-columns: 0.5fr 2.5fr 1fr 1fr;
+    align-items: center;
+    gap: 30px;
     border: 1px solid #333;
     padding: 25px;
-    margin: 20px 0px;
     font-size: 14px;
     color: #e0e0e0;
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.order-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border-color: tomato;
+}
+
+.order-item-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #2a2a2a;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.order-item img {
-    width: 50px;
-    /* Adjust as needed */
-    filter: invert(1);
-    /* If using the parcel icon which is likely black */
-}
-
-/* Specific styling for the generated Parcel icon if it's an image */
-.order-item>img {
-    width: 40px;
-    padding: 10px;
-    background-color: #333;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    filter: unset;
-    /* Since we set bg */
+    border: 1px solid #333;
 }
 
-.order-item-food {
+.order-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.order-id {
+    font-size: 12px;
+    color: tomato;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.order-food-list {
     font-weight: 600;
     color: #fff;
-    margin-bottom: 5px;
+    font-size: 15px;
     line-height: 1.5;
 }
 
-.order-item-name {
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 5px;
-    color: tomato;
+.order-customer-info {
+    margin-top: 5px;
 }
 
-.order-item-address {
-    margin-bottom: 12px;
-    color: #b0b0b0;
+.customer-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.customer-address {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 3px;
     line-height: 1.4;
 }
 
-.order-item-phone {
-    color: #b0b0b0;
+.customer-phone {
+    font-size: 13px;
+    color: #888;
+    margin-top: 2px;
 }
 
-.order-item p {
+.order-meta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+}
+
+.items-count {
     font-size: 14px;
+    color: #aaa;
 }
 
 .order-amount {
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     color: #fff;
 }
 
-.order-item select {
-    background-color: #ffe8e4;
-    border: 1px solid tomato;
-    width: max(10vw, 120px);
-    padding: 10px;
-    outline: none;
-    cursor: pointer;
-    color: tomato;
-    font-weight: 600;
-    border-radius: 6px;
-    transition: all 0.2s;
+.order-status-selector {
+    display: flex;
+    justify-content: center;
 }
 
-.order-item select:hover {
-    background-color: tomato;
-    color: white;
+.status-select {
+    padding: 10px 15px;
+    border: 1px solid #444;
+    border-radius: 50px;
+    background-color: #2a2a2a;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    transition: all 0.2s;
+    appearance: none;
+    /* Attempt to standardise look */
+    -webkit-appearance: none;
+    text-align-last: center;
+    width: 100%;
+    max-width: 180px;
 }
+
+/* Status specific colors */
+.status-select.payment-pending {
+    background-color: #2d1b1b;
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+.status-select.food-processing {
+    background-color: #1a2733;
+    color: #64b5f6;
+    border-color: #64b5f6;
+}
+
+.status-select.out-for-delivery {
+    background-color: #332b1a;
+    color: #ffb74d;
+    border-color: #ffb74d;
+}
+
+.status-select.delivered {
+    background-color: #1b2e1e;
+    color: #81c784;
+    border-color: #81c784;
+}
+
 
 @media (max-width: 1000px) {
     .order-item {
         grid-template-columns: 1fr;
         padding: 20px;
-        gap: 15px;
+        gap: 20px;
     }
 
-    .order-item>img {
-        margin-bottom: 10px;
+    .order-item-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .order-meta-info {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #333;
+        padding-top: 15px;
+    }
+
+    .order-status-selector {
+        justify-content: stretch;
     }
 }

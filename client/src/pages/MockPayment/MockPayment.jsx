@@ -107,7 +107,7 @@ const MockPayment = () => {
                         <div className="mock-review-section">
                             <p className="merchant-info">Pay to: <strong>FastFood Inc.</strong></p>
                             <div className="amount-display">
-                                <span className="currency">$</span>
+                                <span className="currency">₹</span>
                                 <span className="value">{parseFloat(amount).toFixed(2)}</span>
                             </div>
 
