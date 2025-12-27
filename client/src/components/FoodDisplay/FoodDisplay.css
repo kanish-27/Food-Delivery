@@ -14,3 +14,26 @@
     gap: 30px;
     row-gap: 50px;
 }
+
+/* View More Button Styles */
+.view-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.view-more-container button {
+    background: transparent;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid tomato;
+    padding: 10px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-more-container button:hover {
+    background-color: tomato;
+}
