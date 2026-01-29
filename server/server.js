@@ -37,8 +37,18 @@ app.get("/", (req, res) => {
 })
 
 
-app.listen(port, () => {
-    console.log(`Server Started on http://localhost:${port}`)
-})
+
+// Ensure uploads directory exists
+import fs from 'fs';
+if (!fs.existsSync('./uploads')) {
+    fs.mkdirSync('./uploads');
+}
+
+// Only listen if not running on Vercel
+if (!process.env.VERCEL) {
+    app.listen(port, () => {
+        console.log(`Server Started on http://localhost:${port}`)
+    })
+}
 
 export default app;
