@@ -25,7 +25,7 @@ import contactRouter from "./routes/contactRoute.js"
 
 // api endpoints
 app.use("/api/food", foodRouter)
-app.use("/images", express.static('uploads'))
+// app.use("/images", express.static('uploads'))
 app.use("/api/user", userRouter)
 app.use("/api/cart", cartRouter)
 app.use("/api/order", orderRouter)
@@ -38,11 +38,7 @@ app.get("/", (req, res) => {
 
 
 
-// Ensure uploads directory exists
-import fs from 'fs';
-if (!fs.existsSync('./uploads')) {
-    fs.mkdirSync('./uploads');
-}
+
 
 // Only listen if not running on Vercel
 if (!process.env.VERCEL) {
