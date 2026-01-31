@@ -19,8 +19,7 @@ const Contact = () => {
         try {
             // In a real app, you'd have a backend endpoint here. 
             // For now, we will simulate or use the endpoint we are about to create.
-            const url = import.meta.env.VITE_API_URL || "http://localhost:4000";
-            const response = await axios.post(`${url}/api/contact/send`, formData);
+            const response = await axios.post('http://localhost:4000/api/contact/send', formData);
             if (response.data.success) {
                 toast.success('Feedback sent successfully!');
                 setFormData({ name: '', email: '', message: '' });

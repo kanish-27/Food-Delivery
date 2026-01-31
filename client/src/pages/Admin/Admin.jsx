@@ -11,7 +11,7 @@ import AdminLogin from './AdminLogin'
 
 const Admin = () => {
 
-    const url = import.meta.env.VITE_API_URL || "http://localhost:4000"
+    const url = "http://localhost:4000"
     const [adminToken, setAdminToken] = useState(localStorage.getItem('adminToken') || "")
 
     if (!adminToken) {
